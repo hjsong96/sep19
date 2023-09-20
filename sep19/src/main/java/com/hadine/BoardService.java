@@ -20,4 +20,10 @@ public class BoardService {
 		return boardDAO.detail(bno);
 	}
 
+	public int wirte(Map<String, Object> map) {
+		map.put("bip", "172.30.1.1");
+		map.put("m_id", "timolover");
+		return boardDAO.wirte(map);
+	}
+
 }

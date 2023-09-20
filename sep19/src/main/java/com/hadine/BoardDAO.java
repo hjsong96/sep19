@@ -14,4 +14,6 @@ public interface BoardDAO {
 
 	Map<String, Object> detail(int bno);
 
+	int wirte(Map<String, Object> map);
+
 }

@@ -11,7 +11,11 @@
 		SELECT bno, btitle, bcontent, bdate, m_name, blike FROM boardview
 		WHERE bno=#{bno};
 	</select>
-
+	
+	<insert id="wirte" parameterType="Map">
+		INSERT INTO board (btitle, bcontent, bip, m_no) 
+		VALUES (#{title}, #{content}, #{bip}, (SELECT m_no FROM members WHERE m_id=#{m_id})); 
+	</insert>
 
 </mapper>
 
