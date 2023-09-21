@@ -16,4 +16,8 @@ public interface BoardDAO {
 
 	int wirte(Map<String, Object> map);
 
+	int delete(int bno);
+
+	int update(Map<String, Object> map);
+
 }
