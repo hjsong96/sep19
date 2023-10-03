@@ -3,13 +3,17 @@
 <mapper namespace="com.hadine.BoardDAO">
 
 	<select id="boardList" resultType="Map">
-		SELECT * FROM boardview
-		LIMIT 0, 10;
+		SELECT *, (SELECT count(*) FROM boardview) as totalcount FROM boardview
+		ORDER BY bno DESC LIMIT #{pageNo}, 10;
 	</select>
 
 	<select id="detail" resultType="Map">
 		SELECT bno, btitle, bcontent, bdate, m_name, blike FROM boardview
 		WHERE bno=#{bno};
+	</select>
+	
+	<select id="comment" resultType="Map">
+		SELECT * FROM commentsview WHERE bno=#{bno};
 	</select>
 	
 	<insert id="wirte" parameterType="Map">
@@ -24,6 +28,24 @@
 	<update id="update" parameterType="Map">
 		UPDATE board SET btitle=#{title}, bcontent=#{content} WHERE bno=#{bno};
 	</update>
+	
+	<update id="deletecomment" parameterType="Integer">
+		UPDATE comments SET c_del=0 WHERE c_no=#{cno};
+	</update>
+	
+	<insert id="writecomment" parameterType="Map">
+		INSERT INTO comments (c_comment, m_no, bno) 
+		VALUES (#{content},(SELECT m_no FROM members WHERE m_id=#{m_id}), #{bno}); 
+	</insert>
+	
+	<update id="updatecomment" parameterType="Map">
+		UPDATE comments SET c_comment=#{content} WHERE c_no=#{cno};
+	</update>
+	
+	<select id="commentdetail" parameterType="Integer" resultType="Map">
+		SELECT c_comment FROM comments
+		WHERE c_no=#{cno};
+	</select>
 	
 </mapper>
 

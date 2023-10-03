@@ -12,8 +12,9 @@ public class BoardService {
 	@Autowired
 	private BoardDAO boardDAO;
 
-	public List<Map<String, Object>> boardList() {
-		return boardDAO.boardList();
+	public List<Map<String, Object>> boardList(int pageNo) {
+		pageNo = (pageNo - 1) * 10;
+		return boardDAO.boardList(pageNo);
 	}
 
 	public Map<String, Object> detail(int bno) {
@@ -32,6 +33,27 @@ public class BoardService {
 
 	public int update(Map<String, Object> map) {
 		return boardDAO.update(map);
+	}
+
+	public List<Map<String, Object>> comment(int bno) {
+		return boardDAO.comment(bno);
+	}
+
+	public int deletecomment(int cno) {
+		return boardDAO.deletecomment(cno);
+	}
+
+	public int writecomment(Map<String, String> map) {
+		map.put("m_id", "timolover");
+		return boardDAO.writecomment(map);
+	}
+
+	public int updatecomment(Map<String, Object> map) {
+		return boardDAO.updatecomment(map);
+	}
+
+	public Map<String, Object> commentdetail(int cno) {
+		return boardDAO.commentdetail(cno);
 	}
 
 }

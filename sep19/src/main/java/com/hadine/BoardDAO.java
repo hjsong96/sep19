@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 @Mapper
 public interface BoardDAO {
 
-	List<Map<String, Object>> boardList();
+	List<Map<String, Object>> boardList(int pageNo);
 
 	Map<String, Object> detail(int bno);
 
@@ -19,5 +19,15 @@ public interface BoardDAO {
 	int delete(int bno);
 
 	int update(Map<String, Object> map);
+
+	List<Map<String, Object>> comment(int bno);
+
+	int deletecomment(int cno);
+
+	int writecomment(Map<String, String> map);
+
+	int updatecomment(Map<String, Object> map);
+
+	Map<String, Object> commentdetail(int cno);
 
 }
