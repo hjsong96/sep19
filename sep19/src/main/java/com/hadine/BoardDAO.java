@@ -30,4 +30,6 @@ public interface BoardDAO {
 
 	Map<String, Object> commentdetail(int cno);
 
+	Map<String, Object> login(Map<String, Object> map);
+
 }

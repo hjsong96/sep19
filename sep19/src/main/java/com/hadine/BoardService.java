@@ -56,4 +56,8 @@ public class BoardService {
 		return boardDAO.commentdetail(cno);
 	}
 
+	public Map<String, Object> login(Map<String, Object> map) {
+		return boardDAO.login(map);
+	}
+
 }

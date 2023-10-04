@@ -4,7 +4,7 @@
 
 	<select id="boardList" resultType="Map">
 		SELECT *, (SELECT count(*) FROM boardview) as totalcount FROM boardview
-		ORDER BY bno DESC LIMIT #{pageNo}, 10;
+		ORDER BY bno DESC LIMIT #{pageNo}, 20;
 	</select>
 
 	<select id="detail" resultType="Map">
@@ -45,6 +45,12 @@
 	<select id="commentdetail" parameterType="Integer" resultType="Map">
 		SELECT c_comment FROM comments
 		WHERE c_no=#{cno};
+	</select>
+	
+	<select id="login" parameterType="Map" resultType="Map">
+		SELECT COUNT(*) as count, m_name
+		FROM members
+		WHERE m_id=#{userId} AND m_pw=#{userPassword};
 	</select>
 	
 </mapper>

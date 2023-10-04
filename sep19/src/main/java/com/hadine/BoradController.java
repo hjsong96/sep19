@@ -1,5 +1,6 @@
 package com.hadine;
 
+import java.sql.Array;
 import java.util.List;
 import java.util.Map;
 
@@ -23,9 +24,9 @@ public class BoradController {
 	
 	@GetMapping("/board")
 	public String board(@RequestParam(name = "pageNo", required = false, defaultValue = "1") int pageNo) {
-		System.out.println(pageNo);
+		//System.out.println(pageNo);
 		List<Map<String, Object>> list = boardService.boardList(pageNo);
-		System.out.println(list);
+		//System.out.println(list);
 		JSONObject json = new JSONObject();
 		JSONArray arr = new JSONArray(list);
 		json.put("list", arr);
@@ -104,10 +105,19 @@ public class BoradController {
 	
 	@GetMapping("/commentdetail")
 	public String commentdetail(@RequestParam(name="cno", required = true) int cno) {
-		System.out.println(cno);
+		//System.out.println(cno);
 		Map<String, Object> comment = boardService.commentdetail(cno);
 		JSONObject json = new JSONObject();
 		json.put("comment", comment);
+		return json.toString();
+	}
+	
+	@PostMapping("login")
+	public String login(@RequestBody Map<String, Object> map) {
+		System.out.println(map);
+		Map<String, Object> detail = boardService.login(map);
+		JSONObject json = new JSONObject(detail);
+		System.out.println(json.toString());
 		return json.toString();
 	}
 	
