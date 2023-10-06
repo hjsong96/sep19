@@ -8,7 +8,7 @@
 	</select>
 
 	<select id="detail" resultType="Map">
-		SELECT bno, btitle, bcontent, bdate, m_name, blike FROM boardview
+		SELECT bno, btitle, bcontent, bdate, m_name, blike, m_id FROM boardview
 		WHERE bno=#{bno};
 	</select>
 	
@@ -51,6 +51,10 @@
 		SELECT COUNT(*) as count, m_name
 		FROM members
 		WHERE m_id=#{userId} AND m_pw=#{userPassword};
+	</select>
+	
+	<select id="index_cmtTop5" resultType="Map">
+		SELECT bno, btitle, bdate, m_name FROM boardview ORDER BY commentcount DESC LIMIT 5
 	</select>
 	
 </mapper>

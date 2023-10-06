@@ -23,7 +23,7 @@ public class BoardService {
 
 	public int wirte(Map<String, Object> map) {
 		map.put("bip", "172.30.1.1");
-		map.put("m_id", "timolover");
+		//map.put("m_id", "timolover");
 		return boardDAO.wirte(map);
 	}
 
@@ -44,7 +44,7 @@ public class BoardService {
 	}
 
 	public int writecomment(Map<String, String> map) {
-		map.put("m_id", "timolover");
+		//map.put("m_id", "timolover");
 		return boardDAO.writecomment(map);
 	}
 
@@ -58,6 +58,10 @@ public class BoardService {
 
 	public Map<String, Object> login(Map<String, Object> map) {
 		return boardDAO.login(map);
+	}
+
+	public List<Map<String, Object>> index_cmtTop5() {
+		return boardDAO.index_cmtTop5();
 	}
 
 }

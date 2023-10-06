@@ -32,4 +32,6 @@ public interface BoardDAO {
 
 	Map<String, Object> login(Map<String, Object> map);
 
+	List<Map<String, Object>> index_cmtTop5();
+
 }
